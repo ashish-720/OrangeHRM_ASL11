@@ -1,0 +1,139 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.Dassault</groupId>
+  <artifactId>OrangeHRM_ASL11</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>OrangeHRM_ASL11</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.source>8</maven.compiler.source>   <!-- Source code Java version -->
+    <maven.compiler.target>8</maven.compiler.target>   <!-- Target compiled bytecode Java version -->
+    <testng.version>6.14.3</testng.version>            <!-- TestNG library for testing -->
+    <selenium.version>3.141.59</selenium.version>      <!-- Selenium WebDriver library -->
+    <webdrivermanager.version>5.7.0</webdrivermanager.version> <!-- Binary manager for browser drivers -->
+    <poi.version>4.1.2</poi.version>                   <!-- Apache POI for Excel file handling -->
+  </properties>
+
+  <!--
+    ========= Project Dependencies =========
+    All libraries your code depends on go here.
+    Use ${...} for property-based versioning.
+    Each dependency may have a <scope>:
+      - test: for testing only
+      - compile: for main code (default)
+-->
+  <dependencies>
+    <!-- TestNG: Java test framework, used only when testing -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>${testng.version}</version>
+      <scope>compile</scope>  <!-- Available ONLY for test code, not for main code -->
+    </dependency>
+    <!-- Selenium Java: Main library for browser automation -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>${selenium.version}</version>
+    </dependency>
+    <!-- WebDriverManager: Manages browser driver binaries automatically -->
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>${webdrivermanager.version}</version>
+    </dependency>
+    <!-- Apache POI: Library for working with XLS (Excel) files -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+
+      <artifactId>poi</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+    <!-- Apache POI OOXML: Needed for XLSX (new Excel format) files -->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+  </dependencies>
+
+  <!--
+  ========= Build Plugins Section =========
+  Plugins to extend and automate project actions
+-->
+  <build>
+    <plugins>
+      <!-- Maven Surefire Plugin: Executes automated tests.
+           'suiteXmlFiles' links your TestNG suite configuration (testng.xml).
+           The Surefire Plugin is what runs your tests when you do mvn test. By default it looks for JUnit tests,
+           but here you've told it: "use my testng.xml suite file instead."
+           That testng.xml file is where you control which test classes/methods run, in what order, with how many threads, etc.
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>pack1_CreateFirstTestNGTest.xml</suiteXmlFile> <!-- Points to custom TestNG suite file -->
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+      <!-- Maven Compiler Plugin explicitly controls Java compilation settings that Maven otherwise assumes with defaults.
+
+      Why It's Needed
+      Maven includes compiler plugin by default (version ~3.1 in super POM), but defaults to Java 5 compatibility regardless of your JDK. Your pom.xml uses <maven.compiler.source>8</maven.compiler.source> properties,
+      but explicit plugin config overrides ensures:
+      Java 8+ features compile correctly (lambdas, streams).
+      Annotation processing for Lombok or similar.
+      Custom compiler args like -Xlint warnings.-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+
+
+      <!-- Code coverage
+      JaCoCo (Java Code Coverage) is a plugin that measures how much of your Java code your tests actually execute.
+      Core Functionality
+      It instruments your bytecode during test runs (via a Java agent) to track:
+      Line coverage: Which code lines ran.
+      Branch coverage: If/else paths taken.
+      Method/Class coverage: Functions and classes touched.
+      For your TestNG/Selenium project, it reveals gaps like "this WebDriver method never tested" or "Excel reader untested."
+      Run mvn jacoco:report manually after tests to see results instantly.
+      Creates target/site/jacoco/index.html—open in browser for color-coded coverage (green=fully tested, red=missed).
+      -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.11</version>
+        <executions>
+          <execution> <!-- Bind to phases -->
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Additional plugins (e.g., for reporting, building) can be added here -->
+    </plugins>
+  </build>
+
+  <!--
+      ========= [Optional] Other Sections =========
+      You could add <repositories> or <profiles> blocks for customization,
+      but those are not needed for basic Selenium/TestNG setups.
+  -->
+
+</project>

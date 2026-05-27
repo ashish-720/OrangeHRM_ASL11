@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Orange HRM Smoke">
+    <test name="SmokeTest" enabled="false">
+        <classes>
+            <class name="org.OrangeHrmRegressions.OrangeHRMSmoke"></class>
+        </classes>
+    </test>
+
+    <test name="EmployeeTableDataVerification">
+        <parameter name="url" value="https://ashish1993-trials80.orangehrmlive.com"></parameter>
+        <parameter name="username" value="admin"></parameter>
+        <parameter name="password" value="Fr@Zue8O1T"></parameter>
+        <classes>
+            <class name="org.OrangeHrmRegressions.OrangeHrmEmployeeTableDataTest"></class>
+        </classes>
+    </test>
+</suite>
