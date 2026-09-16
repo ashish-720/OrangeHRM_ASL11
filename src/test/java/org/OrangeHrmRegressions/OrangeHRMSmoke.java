@@ -12,7 +12,7 @@ public class OrangeHRMSmoke extends BaseClass {
 
     @Parameters({"url"})
     @Test(priority = 1)
-    public void navigateToApp(@Optional("https://ashish1993-trials80.orangehrmlive.com") String url) {
+    public void navigateToApp(@Optional("https://ashish720-trials821.orangehrmlive.com") String url) {
         driver.get(url);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.atLoginPage();
@@ -20,7 +20,7 @@ public class OrangeHRMSmoke extends BaseClass {
 
     @Parameters({"username", "password"})
     @Test(priority = 2)
-    public void login(@Optional("admin") String username, @Optional("Fr@Zue8O1T") String password) {
+    public void login(@Optional("admin") String username, @Optional("CxOJz@H1c6") String password) {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(username, password);
         DashBoardPage dashBoardPage = new DashBoardPage(driver);

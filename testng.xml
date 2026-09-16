@@ -10,9 +10,9 @@
     </test>
 
     <test name="EmployeeTableDataVerification" enabled="false">
-        <parameter name="url" value="https://ashish1993-trials80.orangehrmlive.com"></parameter>
+        <parameter name="url" value="https://ashish720-trials821.orangehrmlive.com"></parameter>
         <parameter name="username" value="admin"></parameter>
-        <parameter name="password" value="Fr@Zue8O1T"></parameter>
+        <parameter name="password" value="CxOJz@H1c6"></parameter>
         <classes>
             <class name="org.OrangeHrmRegressions.OrangeHrmEmployeeTableDataTest"></class>
         </classes>

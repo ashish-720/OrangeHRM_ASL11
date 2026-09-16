@@ -14,7 +14,7 @@ public class OrangeHrmEmployeeTableDataTest extends BaseClass {
 
     @Parameters({"url"})
     @Test
-    public void navigateToApp(@Optional("https://ashish1993-trials80.orangehrmlive.com") String url) {
+    public void navigateToApp(@Optional("https://ashish720-trials821.orangehrmlive.com") String url) {
         driver.get(url);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.atLoginPage();
