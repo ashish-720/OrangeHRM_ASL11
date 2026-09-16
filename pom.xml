@@ -17,6 +17,7 @@
     <selenium.version>3.141.59</selenium.version>      <!-- Selenium WebDriver library -->
     <webdrivermanager.version>5.7.0</webdrivermanager.version> <!-- Binary manager for browser drivers -->
     <poi.version>4.1.2</poi.version>                   <!-- Apache POI for Excel file handling -->
+    <extentreports.version>5.0.9</extentreports.version>
   </properties>
 
   <!--
@@ -60,6 +61,13 @@
       <artifactId>poi-ooxml</artifactId>
       <version>${poi.version}</version>
     </dependency>
+    <!-- ExtentReports: HTML test reporting (ExtentSparkReporter) -->
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>${extentreports.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <!--
@@ -80,7 +88,7 @@
         <version>3.2.5</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>pack1_CreateFirstTestNGTest.xml</suiteXmlFile> <!-- Points to custom TestNG suite file -->
+            <suiteXmlFile>testng.xml</suiteXmlFile> <!-- Points to custom TestNG suite file -->
           </suiteXmlFiles>
         </configuration>
       </plugin>
