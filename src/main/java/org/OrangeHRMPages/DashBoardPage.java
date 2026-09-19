@@ -1,6 +1,7 @@
 package org.OrangeHRMPages;
 
 import org.OrangeHRMModules.LeftMenuModule;
+import org.OrangeHRMModules.TopBarModule;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,9 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DashBoardPage extends BasePage {
     public LeftMenuModule leftMenuModule;
-
-    @FindBy(how = How.ID, using = "topbar")
-    private WebElement topBar;
+    public TopBarModule topBarModule;
 
     @FindBy(how = How.ID, using = "topbar-ribbon")
     private WebElement topBarRibbon;
@@ -38,15 +37,15 @@ public class DashBoardPage extends BasePage {
     }
 
 
-
     public DashBoardPage(WebDriver driver) {
         super(driver);
         leftMenuModule = new LeftMenuModule(driver);
+        topBarModule = new TopBarModule(driver);
     }
 
     public void atDashBoard() {
         WebDriverWait wait = new WebDriverWait(driver, 3);
-        wait.until(ExpectedConditions.visibilityOf(topBar));
+        wait.until(ExpectedConditions.visibilityOf(topBarModule.getTopBar()));
     }
 
     public void clickMenuItem(String menuItem) {
