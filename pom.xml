@@ -77,10 +77,10 @@
   <build>
     <plugins>
       <!-- Maven Surefire Plugin: Executes automated tests.
-           'suiteXmlFiles' links your TestNG suite configuration (testng.xml).
+           'suiteXmlFiles' links your TestNG suite configuration (OrangeHRM.xml).
            The Surefire Plugin is what runs your tests when you do mvn test. By default it looks for JUnit tests,
-           but here you've told it: "use my testng.xml suite file instead."
-           That testng.xml file is where you control which test classes/methods run, in what order, with how many threads, etc.
+           but here you've told it: "use my OrangeHRM.xml suite file instead."
+           That OrangeHRM.xml file is where you control which test classes/methods run, in what order, with how many threads, etc.
       -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -88,7 +88,7 @@
         <version>3.2.5</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>testng.xml</suiteXmlFile> <!-- Points to custom TestNG suite file -->
+            <suiteXmlFile>OrangeHRM.xml</suiteXmlFile> <!-- Points to custom TestNG suite file -->
           </suiteXmlFiles>
         </configuration>
       </plugin>
