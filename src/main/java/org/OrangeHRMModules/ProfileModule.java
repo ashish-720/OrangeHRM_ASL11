@@ -12,9 +12,14 @@ public class ProfileModule extends BasePage {
     @FindBy(how = How.ID, using = "sidebar-profile-picture")
     private WebElement profileContainer;
 
+    /*
+     * @FindBys = chained lookup (parent -> child), not a list.
+     * Returns the first match for a WebElement field, or all matches for a List<WebElement> field.
+     * See docs/PageFactory-FindBys.md for details.
+     */
     @FindBys({
-            @FindBy(id = "sidebar-profile-picture"),
-            @FindBy(className = "name")
+            @FindBy(id = "sidebar-profile-picture"), // step 1: find this element
+            @FindBy(className = "name") // step 2: search INSIDE it for class="name"
     })
     private WebElement profileName;
 
