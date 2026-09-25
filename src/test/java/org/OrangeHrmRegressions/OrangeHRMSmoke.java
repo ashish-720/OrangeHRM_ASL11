@@ -1,5 +1,6 @@
 package org.OrangeHrmRegressions;
 
+import org.OrangeHRMModules.TopBarModule;
 import org.OrangeHRMPages.DashBoardPage;
 import org.OrangeHRMPages.LoginPage;
 import org.testng.Assert;
@@ -27,6 +28,14 @@ public class OrangeHRMSmoke extends BaseClass {
         dashBoardPage.atDashBoard();
         String currentProfile = dashBoardPage.leftMenuModule.profileModule.getProfileName();
         Assert.assertEquals(currentProfile, "Aaron Hamilton", "Verifying Current HR");
+    }
+
+    @Test(priority = 3)
+    public void logout() {
+        TopBarModule topBarModule = new TopBarModule(driver);
+        topBarModule.logoutUsingOptionsMenuItem("Logout from all browsers");
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.atLoginPage();
     }
 
 }
